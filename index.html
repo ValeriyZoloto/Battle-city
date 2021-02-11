@@ -21,16 +21,16 @@
 			const renderer = new Renderer({
                 width: 500,
                 height: 500,
-                background: 'gray',
+                background: 'blue',
 
                 update (timestamp){
                    renderer.draw((canvas, content) =>{
                        content.beginPath()
-                       content.fillStyle = 'black'
+                       content.fillStyle = 'yellow'
                        content.arc(
-                           canvas.width / 2 + 50 * Math.cos(timestamp /100)  , 
-                           canvas.height / 2 + 50 * Math.sin(timestamp /100)  , 
-                           5, 
+                           canvas.width / 2 + 150 * Math.cos(timestamp /290)  , 
+                           canvas.height / 2 + 150 * Math.sin(timestamp /290)  , 
+                           25, 
                            0, 
                            Math.PI * 2)
                        content.fill()
