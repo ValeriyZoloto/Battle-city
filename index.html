@@ -21,9 +21,21 @@
 			const renderer = new Renderer({
                 width: 500,
                 height: 500,
+                background: 'gray',
 
                 update (timestamp){
+                   renderer.draw((canvas, content) =>{
+                       content.beginPath()
+                       content.fillStyle = 'black'
+                       content.arc(
+                           canvas.width / 2 + 50 * Math.cos(timestamp /100)  , 
+                           canvas.height / 2 + 50 * Math.sin(timestamp /100)  , 
+                           5, 
+                           0, 
+                           Math.PI * 2)
+                       content.fill()
 
+                   })
                 }
             });
 
