@@ -14,8 +14,10 @@
 		<!-- 3) Rendering -->
 		<script src="./engine/Loader.js"></script>
 		<script src="./engine/Renderer.js"></script>
+        <script src="./engine/Sprite.js"></script>
+        <script src="./engine/Container.js"></script>
 		<script>
-			const { Loader, Renderer } = GameEngine;
+			const { Loader, Renderer, Sprite } = GameEngine;
 
 			const loader = new Loader();
 			const renderer = new Renderer({
@@ -23,27 +25,30 @@
                 height: 500,
                 background: 'blue',
 
-                update (timestamp){
-                   renderer.draw((canvas, content) =>{
-                       content.beginPath()
-                       content.fillStyle = 'yellow'
-                       content.arc(
-                           canvas.width / 2 + 150 * Math.cos(timestamp /290)  , 
-                           canvas.height / 2 + 150 * Math.sin(timestamp /290)  , 
-                           25, 
-                           0, 
-                           Math.PI * 2)
-                       content.fill()
+                // update (timestamp){
+                //    renderer.draw((canvas, content) =>{
+                //        content.beginPath()
+                //        content.fillStyle = 'yellow'
+                //        content.arc(
+                //            canvas.width / 2 + 150 * Math.cos(timestamp /290)  , 
+                //            canvas.height / 2 + 150 * Math.sin(timestamp /290)  , 
+                //            25, 
+                //            0, 
+                //            Math.PI * 2)
+                //        content.fill()
 
-                   })
-                }
+                //    })
+                // }
             });
 
 			document.body.append(renderer.canvas);
 
 			loader.addImage("Banny", "./static/rabbit_Banny.jpg");
 			loader.addJson("persons", "static/persons.json");
-			loader.load();
+			loader.load(() =>{
+                const sprite = new Sprite(loader.getImage("Banny"))
+                renderer.stage.add(sprite)
+            });
 		</script>
 	</body>
 </html>
