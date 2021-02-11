@@ -1,0 +1,37 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Battle city</title>
+	</head>
+	<body>
+		<!-- 1) Loader (Загрузчик) -->
+		<!-- 2) Application -->
+		<!-- 3) Rendering -->
+		<script src="./engine/Loader.js"></script>
+		<script src="./engine/Renderer.js"></script>
+		<script>
+			const { Loader, Renderer } = GameEngine;
+
+			const loader = new Loader();
+			const renderer = new Renderer({
+                width: 500,
+                height: 500,
+
+                update (timestamp){
+
+                }
+            });
+
+			document.body.append(renderer.canvas);
+
+			loader.addImage("Banny", "./static/rabbit_Banny.jpg");
+			loader.addJson("persons", "static/persons.json");
+			loader.load();
+		</script>
+	</body>
+</html>
