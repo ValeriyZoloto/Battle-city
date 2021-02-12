@@ -18,6 +18,21 @@
 			requestAnimationFrame((timestamp) => this.tick(timestamp));
 		}
 
+		get displayObjects() {
+			return getDisplayObjects(this.stage);
+
+			function getDisplayObjects(container, result = []) {
+				for (const displayObject of container.displayObjects) {
+					if (displayObject instanceof GameEngine.Container) {
+						getDisplayObjects(displayObject, result);
+					} else {
+						result.push(displayObject);
+					}
+				}
+				return result;
+			}
+		}
+
 		tick(timestamp) {
 			this.update(timestamp);
 
