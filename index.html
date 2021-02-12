@@ -9,10 +9,12 @@
 		<title>Battle city</title>
 	</head>
 	<body>
+		<script src="./engine/DisplayObject.js"></script>
+		<script src="./engine/Container.js"></script>
 		<script src="./engine/Loader.js"></script>
 		<script src="./engine/Renderer.js"></script>
 		<script src="./engine/Sprite.js"></script>
-		<script src="./engine/Container.js"></script>
+
 		<script>
 			const { Loader, Renderer, Sprite, Container } = GameEngine;
 
@@ -22,22 +24,22 @@
 			const renderer = new Renderer({
 				width: 500,
 				height: 500,
-				background: "blue",
+				background: "gray",
 
 				update(timestamp) {
 					if (!sprite) {
 						return;
 					}
 
-					sprite.frame.x =
-						sprite.texture.width / 2 + 100 * Math.cos(timestamp / 200);
-					sprite.frame.y =
-						sprite.texture.height / 2 + 100 * Math.sin(timestamp / 200);
+					// sprite.frame.x =
+					// 	sprite.texture.width / 2 + 100 * Math.cos(timestamp / 200);
+					// sprite.frame.y =
+					// 	sprite.texture.height / 2 + 100 * Math.sin(timestamp / 200);
 
-					sprite.x =
-						renderer.canvas.width / 2 + 200 * Math.cos(timestamp / 200);
-					sprite.y =
-						renderer.canvas.height / 2 + 200 * Math.sin(timestamp / 200);
+					// sprite.x =
+					// 	renderer.canvas.width / 2 + 200 * Math.cos(timestamp / 200);
+					// sprite.y =
+					// 	renderer.canvas.height / 2 + 200 * Math.sin(timestamp / 200);
 				},
 			});
 
@@ -48,12 +50,21 @@
 
 			loader.load(() => {
 				sprite = new Sprite(loader.getImage("Banny"), {
+					x: renderer.canvas.width / 2,
+					y: renderer.canvas.height / 2,
+					rotation: Math.PI / 2,
 					scale: 0.25,
 					anchorX: 0.5,
 					anchorY: 0.5,
 				});
 
 				const container = new Container();
+				// container.x = 100;
+				// container.y = 100;
+				// container.rotation = Math.PI / 4;
+				// container.anchorX = 0.5
+				// container.anchorY = 0.5
+
 				renderer.stage.add(container);
 				container.add(sprite);
 

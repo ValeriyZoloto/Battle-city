@@ -3,9 +3,13 @@
 (function () {
 	"use strict";
 
-	class Container {
-		constructor() {
+	class Container extends GameEngine.DisplayObject {
+		constructor(args = {}) {
+			super(args);
+
 			this.displayObjects = [];
+
+			
 		}
 
 		add(displayObject) {
@@ -17,9 +21,16 @@
 		remove() {}
 
 		draw(canvas, context) {
+			context.save();
+			context.translate(this.x, this.y);
+            context.rotate(this.rotation)
+            context.scale(this.scaleX, this.scaleY)
+
 			for (const displayObject of this.displayObjects) {
 				displayObject.draw(canvas, context);
 			}
+
+			context.restore();
 		}
 	}
 
