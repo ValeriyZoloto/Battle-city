@@ -29,7 +29,7 @@
 		draw(canvas, context) {
 			context.save();
 			context.translate(this.x, this.y);
-			context.rotate(this.rotation);
+			context.rotate(- this.rotation);
 			context.scale(this.scaleX, this.scaleY);
 
 			context.drawImage(
@@ -38,11 +38,16 @@
 				this.frame.y,
 				this.frame.width,
 				this.frame.height,
-				this.absoluteX,
-				this.absoluteY,
+				this.absoluteX - this.x,
+				this.absoluteY - this.y,
 				this.width,
-				this.height ,
+				this.height
 			);
+
+			context.beginPath();
+			context.fillStyle = "red";
+			context.arc(0, 0, 5, 0, Math.PI * 2);
+			context.fill();
 
 			context.restore();
 		}

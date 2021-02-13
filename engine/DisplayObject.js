@@ -16,9 +16,11 @@
 			this.anchorX = args.anchorX || 0;
 			this.anchorY = args.anchorY || 0;
 
-			this.scale = args.scale || 1;
+			// this.scale = args.scale || 1;
 			this.scaleX = args.scaleX || 1;
 			this.scaleY = args.scaleY || 1;
+
+			this.parent = null;
 
 			if (args.scale !== undefined) {
 				this.setScale(args.scale);
@@ -30,20 +32,30 @@
 			this.scaleY = scale;
 		}
 
+		setParent(parent) {
+			if (this.parent) {
+				this.parent.remove(this);
+			}
+
+			if (parent) {
+				parent.add(this);
+				this.parent = parent;
+			}
+		}
+
 		draw() {}
 
 		get absoluteX() {
-			return this.x - this.anchorX * this.width * this.scaleX;
+			return this.x - this.anchorX * this.width;
 		}
 
 		set absoluteX(value) {
 			this.x = value + this.anchorX * this.width;
-
 			return value;
 		}
 
 		get absoluteY() {
-			return this.y - this.anchorY * this.height * this.scaleY;
+			return this.y - this.anchorY * this.height;
 		}
 
 		set absoluteY(value) {
